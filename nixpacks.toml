@@ -1,0 +1,6 @@
+New-Item -Path "E:\ExpenseManager\nixpacks.toml" -ItemType File
+Set-Content "E:\ExpenseManager\nixpacks.toml" "[phases.build]
+cmds = ['composer install --no-dev --optimize-autoloader']
+
+[variables]
+PHP_EXTENSIONS = 'mbstring iconv'"
