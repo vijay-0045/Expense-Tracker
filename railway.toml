@@ -2,13 +2,13 @@
 builder = "nixpacks"
 
 [build.nixpacksPlan.phases.setup]
-nixPkgs = ["php82"]
+nixPkgs = ["php82", "php82Extensions.pdo", "php82Extensions.pdo_mysql", "php82Extensions.mbstring", "php82Extensions.xml", "php82Extensions.curl", "php82Extensions.zip", "nginx"]
 
 [build.nixpacksPlan.phases.install]
 cmds = ["composer install --no-dev --optimize-autoloader"]
 
 [build.nixpacksPlan.phases.build]
-cmds = []
+cmds = ["php artisan config:cache", "php artisan route:cache"]
 
 [deploy]
-startCommand = "php artisan config:cache && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=${PORT:-8000}"
+startCommand = "php artisan migrate --force && php -S 0.0.0.0:$PORT -t public"
