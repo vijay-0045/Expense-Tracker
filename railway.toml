@@ -11,4 +11,4 @@ cmds = ["composer install --no-dev --optimize-autoloader"]
 cmds = ["php artisan config:cache", "php artisan route:cache"]
 
 [deploy]
-startCommand = "php -S 0.0.0.0:80 -t public"
+startCommand = "php -d error_reporting=E_ALL&~E_DEPRECATED&~E_NOTICE -S 0.0.0.0:80 -t public"
